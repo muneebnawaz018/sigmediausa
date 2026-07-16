@@ -16,7 +16,7 @@
   --glow-deep: #c77f24;   /* pressed state */
   --cream: #f5f1e8;       /* primary text */
   --slate: #8da2c0;       /* secondary text */
-  --slate-dim: #5d7093;   /* tertiary text, captions */
+  --slate-dim: #6f83a8;   /* tertiary text, captions — keeps >=4.5:1 on --ink */
 
   /* Semantic */
   --bg: var(--ink);

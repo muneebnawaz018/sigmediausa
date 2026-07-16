@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { WORK } from '../data/site.js'
 import Reveal from './Reveal.jsx'
@@ -23,8 +23,10 @@ export default function Work() {
 
   const closeLightbox = () => setLightbox(null)
 
-  const step = (dir) =>
-    setLightbox((i) => (i === null ? i : (i + dir + items.length) % items.length))
+  const step = useCallback(
+    (dir) => setLightbox((i) => (i === null ? i : (i + dir + items.length) % items.length)),
+    [items.length],
+  )
 
   const selectCategory = (id) => {
     setActiveId(id)
@@ -43,17 +45,31 @@ export default function Work() {
     }
   }, [isOpen])
 
-  // Esc closes, arrow keys cycle within the active category
+  // Esc closes, arrow keys cycle within the active category, Tab stays trapped
   useEffect(() => {
     if (!isOpen) return
     const onKey = (e) => {
       if (e.key === 'Escape') closeLightbox()
       else if (e.key === 'ArrowLeft') step(-1)
       else if (e.key === 'ArrowRight') step(1)
+      else if (e.key === 'Tab') {
+        const dialog = closeRef.current?.closest('.work__lightbox')
+        if (!dialog) return
+        const focusables = dialog.querySelectorAll('button')
+        const first = focusables[0]
+        const last = focusables[focusables.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [isOpen, items.length])
+  }, [isOpen, step])
 
   return (
     <section id="work" className="section work">

@@ -80,6 +80,11 @@ h1, h2, h3, h4 {
   padding-block: var(--section-pad);
 }
 
+/* Anchored jumps must clear the fixed 72px navbar */
+[id] {
+  scroll-margin-top: 88px;
+}
+
 /* EXIF-style eyebrow — structural device */
 .exif {
   display: flex;

@@ -10,6 +10,21 @@ export default function VideoModal({ open, onClose, src, poster, vertical = fals
     if (!open) return
     const onKey = (e) => {
       if (e.key === 'Escape') onClose()
+      if (e.key === 'Tab') {
+        // Keep focus inside the dialog
+        const dialog = closeRef.current?.closest('.vmodal')
+        if (!dialog) return
+        const focusables = dialog.querySelectorAll('button, video, [tabindex]:not([tabindex="-1"])')
+        const first = focusables[0]
+        const last = focusables[focusables.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
     }
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
