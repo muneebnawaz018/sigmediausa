@@ -1,0 +1,91 @@
+/* ============================================
+   CTA band — closing ask, centered, glow rising
+   from below the fold like a window at dusk
+   ============================================ */
+
+.cta-band {
+  background:
+    radial-gradient(ellipse at 50% 120%, rgba(240, 168, 75, 0.14), transparent 60%),
+    var(--ink);
+  border-top: 1px solid var(--sky-dim);
+  text-align: center;
+}
+
+.section.cta-band {
+  padding-block: calc(var(--section-pad) * 1.2);
+}
+
+/* Centered eyebrow variant — hide the leading dash */
+.cta-band__eyebrow {
+  justify-content: center;
+}
+
+.cta-band__eyebrow::before {
+  display: none;
+}
+
+.cta-band__title {
+  font-size: clamp(2.25rem, 1.6rem + 3.4vw, 4rem);
+  max-width: 18ch;
+  margin-inline: auto;
+}
+
+.cta-band__sub {
+  margin-inline: auto;
+}
+
+/* Phone cluster */
+.cta-band__phones {
+  margin-top: var(--space-12);
+}
+
+.cta-band__lead {
+  font-size: var(--text-sm);
+  color: var(--slate);
+  margin-bottom: var(--space-4);
+}
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.cta-band__btn:hover:not(:active) {
+  transform: translateY(-2px);
+}
+
+.cta-band__num {
+  font-variant-numeric: tabular-nums;
+}
+
+.cta-band__hours {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  color: var(--slate-dim);
+}
+
+@media (max-width: 900px) {
+  .cta-band__phones {
+    margin-top: var(--space-8);
+  }
+}
+
+@media (max-width: 600px) {
+  .cta-band__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-band__btn {
+    width: 100%;
+    max-width: 22rem;
+  }
+}

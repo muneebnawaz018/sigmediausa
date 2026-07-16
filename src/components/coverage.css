@@ -1,0 +1,194 @@
+/* ============================================
+   Coverage — dual market cards + hours strip
+   ============================================ */
+
+.coverage__markets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin-top: var(--space-12);
+}
+
+/* Reveal wrapper — lets the inner card own its hover transform
+   without fighting the .reveal entrance transition */
+.coverage__cell {
+  display: flex;
+}
+
+.coverage__card {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-12);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.coverage__card:hover {
+  border-color: color-mix(in srgb, var(--glow) 45%, transparent);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Oversized code watermark — background echo */
+.coverage__watermark {
+  position: absolute;
+  top: -0.16em;
+  right: -0.05em;
+  z-index: 0;
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 15vw, 12.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--cream);
+  opacity: 0.035;
+  pointer-events: none;
+  user-select: none;
+}
+
+.coverage__code {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 640;
+  font-variation-settings: 'opsz' 40, 'wdth' 90;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--cream);
+}
+
+.coverage__name {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--space-4);
+  font-size: var(--text-xl);
+  color: var(--cream);
+}
+
+.coverage__area {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--space-2);
+  color: var(--slate);
+}
+
+.coverage__coords {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--slate-dim);
+}
+
+.coverage__coords svg {
+  flex-shrink: 0;
+}
+
+/* Market line — big tappable phone link */
+.coverage__phone {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  margin-top: var(--space-8);
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--glow);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.coverage__phone svg {
+  flex-shrink: 0;
+}
+
+.coverage__phone:hover {
+  color: var(--glow-bright);
+}
+
+/* Hours strip — mirrors the card grid so each item sits under its card */
+.coverage__hours {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4) var(--space-6);
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--sky-dim);
+}
+
+.coverage__hours-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+}
+
+.coverage__hours-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--slate);
+  font-size: var(--text-sm);
+}
+
+.coverage__hours-label svg {
+  flex-shrink: 0;
+  color: var(--glow);
+}
+
+.coverage__hours-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--cream);
+}
+
+@media (max-width: 900px) {
+  .coverage__markets {
+    grid-template-columns: 1fr;
+    margin-top: var(--space-8);
+  }
+
+  .coverage__card {
+    padding: var(--space-8);
+  }
+
+  .coverage__watermark {
+    font-size: clamp(7rem, 24vw, 10rem);
+  }
+
+  .coverage__hours {
+    grid-template-columns: 1fr;
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+  }
+}
+
+@media (max-width: 600px) {
+  .coverage__card {
+    padding: var(--space-6);
+  }
+
+  .coverage__phone {
+    font-size: var(--text-lg);
+  }
+}

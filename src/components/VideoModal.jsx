@@ -31,7 +31,6 @@ export default function VideoModal({ open, onClose, src, poster, vertical = fals
         <button ref={closeRef} className="vmodal__close" onClick={onClose} aria-label="Close video">
           <X size={22} />
         </button>
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video key={src} src={src} poster={poster} controls autoPlay playsInline />
       </div>
     </div>

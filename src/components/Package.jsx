@@ -1,0 +1,85 @@
+import { useEffect, useRef } from 'react'
+import { Check, Zap } from 'lucide-react'
+import { PACKAGE, CONTACT } from '../data/site.js'
+import Reveal from './Reveal.jsx'
+import './package.css'
+
+// The $349 flagship offer — elevated band card, price lockup left,
+// autoplaying cinematic preview bleeding to the card edge on the right.
+export default function Package() {
+  const videoRef = useRef(null)
+
+  // Play only while >= 30% visible; never autoplay under reduced motion.
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+          video.play().catch(() => {})
+        } else {
+          video.pause()
+        }
+      },
+      { threshold: [0, 0.3] },
+    )
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <section id="package" className="section package">
+      <div className="container container--wide">
+        <Reveal className="package__card">
+          <div className="package__body">
+            <p className="exif">
+              {PACKAGE.eyebrow} <span className="exif__meta">· one shoot</span>
+            </p>
+
+            <p className="package__price-lockup">
+              <span className="package__price-note">{PACKAGE.priceNote}</span>
+              <span className="package__price">{PACKAGE.price}</span>
+            </p>
+
+            <h2 className="package__title">{PACKAGE.title}</h2>
+            <p className="package__blurb">{PACKAGE.blurb}</p>
+
+            <ul className="package__list">
+              {PACKAGE.items.map((item) => (
+                <li className="package__item" key={item}>
+                  <Check className="package__check" size={18} strokeWidth={2.5} aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <div className="package__footer">
+              <a className="btn btn--primary package__cta" href={CONTACT.scheduleUrl}>
+                {PACKAGE.cta}
+              </a>
+              <p className="package__turnaround">
+                <Zap size={15} aria-hidden="true" />
+                {PACKAGE.turnaround}
+              </p>
+            </div>
+          </div>
+
+          <div className="package__media">
+            <video
+              ref={videoRef}
+              src="/media/clips/cine-2a.mp4"
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Cinematic walkthrough preview of a listing shot by SIGMEDIA"
+            />
+            <span className="package__media-blend" aria-hidden="true" />
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
