@@ -1,0 +1,74 @@
+/* ============================================
+   Video modal — full example player
+   ============================================ */
+
+.vmodal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  background: rgba(6, 10, 20, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: vmodal-in var(--dur-base) var(--ease-out);
+}
+
+@keyframes vmodal-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.vmodal__body {
+  position: relative;
+  width: min(960px, 100%);
+  animation: vmodal-body-in var(--dur-slow) var(--ease-out);
+}
+
+@keyframes vmodal-body-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+.vmodal__body--vertical {
+  width: min(420px, 100%);
+}
+
+.vmodal__body video {
+  width: 100%;
+  max-height: 86dvh;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(141, 162, 192, 0.25);
+  background: var(--ink-deep);
+  box-shadow: var(--shadow-md);
+}
+
+.vmodal__close {
+  position: absolute;
+  top: -52px;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  color: var(--cream);
+  background: rgba(19, 28, 51, 0.8);
+  border: 1px solid rgba(141, 162, 192, 0.25);
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.vmodal__close:hover {
+  background: var(--glow);
+  color: var(--on-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vmodal,
+  .vmodal__body {
+    animation: none;
+  }
+}
