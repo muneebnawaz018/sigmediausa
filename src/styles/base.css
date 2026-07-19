@@ -47,10 +47,13 @@ button {
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  line-height: 1.08;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-weight: 570;
+  letter-spacing: -0.015em;
   text-wrap: balance;
+  /* Fraunces: high optical size = crisp high-contrast editorial serif; no wonk/softness */
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+  font-optical-sizing: auto;
 }
 
 :focus-visible {

@@ -45,8 +45,8 @@
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(to top, rgba(10, 15, 30, 0.96) 0%, rgba(10, 15, 30, 0.55) 28%, rgba(10, 15, 30, 0.12) 55%, rgba(10, 15, 30, 0.35) 100%),
-    linear-gradient(105deg, rgba(10, 15, 30, 0.55) 0%, transparent 55%);
+    linear-gradient(to top, rgba(10, 15, 30, 0.97) 0%, rgba(10, 15, 30, 0.72) 30%, rgba(10, 15, 30, 0.2) 58%, rgba(10, 15, 30, 0.4) 100%),
+    linear-gradient(105deg, rgba(10, 15, 30, 0.68) 0%, rgba(10, 15, 30, 0.25) 45%, transparent 65%);
 }
 
 /* Grade status chip — top right */
@@ -112,10 +112,13 @@
 
 .hero__title {
   font-size: var(--text-hero);
-  font-weight: 640;
-  font-variation-settings: 'opsz' 40, 'wdth' 90;
-  color: var(--cream);
-  max-width: 16ch;
+  font-weight: 600;
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  color: #ffffff;
+  max-width: 15ch;
+  text-shadow: 0 2px 24px rgba(6, 10, 20, 0.55);
 }
 
 .hero__title-a,
@@ -135,7 +138,8 @@
   max-width: 52ch;
   font-size: var(--text-lg);
   line-height: 1.65;
-  color: var(--slate);
+  color: var(--cream);
+  text-shadow: 0 1px 14px rgba(6, 10, 20, 0.6);
 }
 
 .hero__actions {
@@ -165,7 +169,7 @@
 
 .hero__exif-item dt {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   letter-spacing: 0.16em;
   color: var(--slate-dim);
   margin-bottom: var(--space-1);

@@ -22,7 +22,7 @@
 }
 
 .footer__wordmark {
-  font-family: 'Syncopate', var(--font-display);
+  font-family: 'Syncopate', system-ui, sans-serif;
   font-weight: 700;
   font-size: var(--text-lg);
   letter-spacing: 0.22em;
@@ -39,11 +39,11 @@
 /* Column headings — mono microtype */
 .footer__heading {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 500;
+  font-size: var(--text-xs);
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--slate-dim);
+  color: var(--slate);
   margin-bottom: var(--space-4);
 }
 
@@ -57,8 +57,8 @@
   align-items: center;
   gap: var(--space-2);
   min-height: 44px;
-  font-size: var(--text-sm);
-  color: var(--slate);
+  font-size: var(--text-base);
+  color: var(--cream);
   transition: color var(--dur-fast) var(--ease-out);
 }
 
@@ -76,13 +76,13 @@
 .footer__phone-code {
   font-size: var(--text-xs);
   letter-spacing: 0.12em;
-  color: var(--slate-dim);
+  color: var(--slate);
 }
 
 .footer__hours {
-  font-size: var(--text-xs);
-  line-height: 1.6;
-  color: var(--slate-dim);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--slate);
   margin-top: var(--space-2);
 }
 
@@ -93,7 +93,7 @@
 /* Follow — icon + label pairs */
 .footer__social svg {
   flex-shrink: 0;
-  color: var(--slate-dim);
+  color: var(--slate);
   transition: color var(--dur-fast) var(--ease-out);
 }
 
@@ -116,14 +116,14 @@
 
 .footer__legal {
   font-size: var(--text-sm);
-  color: var(--slate-dim);
+  color: var(--slate);
 }
 
 .footer__micro {
   font-family: var(--font-mono);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   letter-spacing: 0.1em;
-  color: var(--slate-dim);
+  color: var(--slate);
 }
 
 /* ---- Responsive ---- */
