@@ -5,3 +5,6 @@ dist
 SIGMEDIA WEBSITE/
 SIGMEDIA WEBSITE.zip
 .DS_Store
+
+# local media master (mirrors the Cloudflare assets project)
+media-cdn/

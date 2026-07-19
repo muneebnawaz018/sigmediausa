@@ -1,5 +1,9 @@
 // SIGMEDIA — single source of truth for copy, contact info and media paths.
 
+// Media base — public assets hosted on Cloudflare Pages (sigmedia-assets project).
+// Not a secret; hardcoded so no build-time env is needed.
+const CDN = 'https://sigmedia-assets.pages.dev'
+
 export const CONTACT = {
   phoneICT: '(316) 665-7700',
   phoneICTHref: 'tel:+13166657700',
@@ -48,8 +52,8 @@ export const HERO = {
   sub: 'SIGMEDIA is the media partner trusted by high-performing agents who refuse to cut corners. Easy scheduling. Reliable turnaround. Elite-level presentation — every time.',
   ctaPrimary: 'Schedule a shoot',
   ctaSecondary: 'See the work',
-  image: '/media/photos/hero-2560.webp',
-  imageSmall: '/media/photos/hero-1280.webp',
+  image: `${CDN}/media/photos/hero-2560.webp`,
+  imageSmall: `${CDN}/media/photos/hero-1280.webp`,
   exif: [
     { k: 'TURNAROUND', v: 'Next day' },
     { k: 'MARKETS', v: 'ICT · DFW' },
@@ -113,6 +117,7 @@ export const PACKAGE = {
   eyebrow: 'The SIGMEDIA Package',
   price: '$349',
   priceNote: 'starting at',
+  previewClip: `${CDN}/media/clips/cine-2a.mp4`,
   title: 'Everything a listing needs. One shoot.',
   blurb:
     'One appointment, next-day delivery, and a listing that shows up everywhere it matters — MLS, social, print and search.',
@@ -136,42 +141,42 @@ export const WORK = {
       id: 'interiors',
       label: 'Interiors',
       items: [
-        { src: '/media/photos/interior-11.webp', alt: 'Living room at dusk with navy sectional, linear fireplace and sunset pool view' },
-        { src: '/media/photos/interior-12.webp', alt: 'Luxury kitchen with black cabinets, gold accents and marble waterfall island' },
-        { src: '/media/photos/interior-16.webp', alt: 'Two-story great room with black marble fireplace and cream curved sofas' },
-        { src: '/media/photos/interior-9.webp', alt: 'Spa bathroom with freestanding tub and book-matched marble shower' },
-        { src: '/media/photos/interior-17.webp', alt: 'Master bath suite in black marble opening to the bedroom' },
-        { src: '/media/photos/interior-1.webp', alt: 'Modern foyer with stone column, wood slat screen and black pivot door' },
+        { src: `${CDN}/media/photos/interior-11.webp`, alt: 'Living room at dusk with navy sectional, linear fireplace and sunset pool view' },
+        { src: `${CDN}/media/photos/interior-12.webp`, alt: 'Luxury kitchen with black cabinets, gold accents and marble waterfall island' },
+        { src: `${CDN}/media/photos/interior-16.webp`, alt: 'Two-story great room with black marble fireplace and cream curved sofas' },
+        { src: `${CDN}/media/photos/interior-9.webp`, alt: 'Spa bathroom with freestanding tub and book-matched marble shower' },
+        { src: `${CDN}/media/photos/interior-17.webp`, alt: 'Master bath suite in black marble opening to the bedroom' },
+        { src: `${CDN}/media/photos/interior-1.webp`, alt: 'Modern foyer with stone column, wood slat screen and black pivot door' },
       ],
     },
     {
       id: 'exteriors',
       label: 'Exteriors',
       items: [
-        { src: '/media/photos/exterior-1.webp', alt: 'Modern luxury home poolside with infinity spa edge and twin fire bowls' },
-        { src: '/media/photos/exterior-2.webp', alt: 'Modern home rear elevation with fire bowls and tiled water feature' },
-        { src: '/media/photos/exterior-3.webp', alt: 'Modern pool deck with fountain jets and rock fire pit' },
-        { src: '/media/photos/exterior-7.webp', alt: 'Brick two-story traditional home with arched entry and manicured hedges' },
+        { src: `${CDN}/media/photos/exterior-1.webp`, alt: 'Modern luxury home poolside with infinity spa edge and twin fire bowls' },
+        { src: `${CDN}/media/photos/exterior-2.webp`, alt: 'Modern home rear elevation with fire bowls and tiled water feature' },
+        { src: `${CDN}/media/photos/exterior-3.webp`, alt: 'Modern pool deck with fountain jets and rock fire pit' },
+        { src: `${CDN}/media/photos/exterior-7.webp`, alt: 'Brick two-story traditional home with arched entry and manicured hedges' },
       ],
     },
     {
       id: 'aerials',
       label: 'Aerials',
       items: [
-        { src: '/media/photos/drone-1.webp', alt: 'Aerial view of modern flat-roof home with rectangular pool and travertine deck' },
-        { src: '/media/photos/drone-5.webp', alt: 'Aerial view of modern ranch home with raised deck pool and striped lawn' },
-        { src: '/media/photos/drone-night-2.webp', alt: 'Aerial at dusk with glowing pool, landscape lighting and city lights beyond' },
-        { src: '/media/photos/drone-3.webp', alt: 'Elevated aerial of stone estate with turret in a lake community' },
+        { src: `${CDN}/media/photos/drone-1.webp`, alt: 'Aerial view of modern flat-roof home with rectangular pool and travertine deck' },
+        { src: `${CDN}/media/photos/drone-5.webp`, alt: 'Aerial view of modern ranch home with raised deck pool and striped lawn' },
+        { src: `${CDN}/media/photos/drone-night-2.webp`, alt: 'Aerial at dusk with glowing pool, landscape lighting and city lights beyond' },
+        { src: `${CDN}/media/photos/drone-3.webp`, alt: 'Elevated aerial of stone estate with turret in a lake community' },
       ],
     },
     {
       id: 'twilights',
       label: 'Twilights',
       items: [
-        { src: '/media/photos/twilight-5.webp', alt: 'Modern entry at twilight with glowing glass door under an orange sky' },
-        { src: '/media/photos/twilight-6.webp', alt: 'Stone Tudor-style home at twilight with lit windows and curved walkway' },
-        { src: '/media/photos/twilight-4.webp', alt: 'Sprawling stone estate under a vivid orange and purple sunset' },
-        { src: '/media/photos/drone-twilight.webp', alt: 'Aerial of lakefront home at virtual twilight with fenced pool' },
+        { src: `${CDN}/media/photos/twilight-5.webp`, alt: 'Modern entry at twilight with glowing glass door under an orange sky' },
+        { src: `${CDN}/media/photos/twilight-6.webp`, alt: 'Stone Tudor-style home at twilight with lit windows and curved walkway' },
+        { src: `${CDN}/media/photos/twilight-4.webp`, alt: 'Sprawling stone estate under a vivid orange and purple sunset' },
+        { src: `${CDN}/media/photos/drone-twilight.webp`, alt: 'Aerial of lakefront home at virtual twilight with fenced pool' },
       ],
     },
   ],
@@ -183,24 +188,24 @@ export const REELS = {
   sub: 'Vertical reels for social, cinematic walkthroughs for MLS and YouTube — shot and cut in-house.',
   // Short muted preview loops (vertical 540x960)
   clips: [
-    { src: '/media/clips/reel-1.mp4', label: 'Listing reel' },
-    { src: '/media/clips/agent-2a.mp4', label: 'Agent intro' },
-    { src: '/media/clips/reel-3a.mp4', label: 'Property tour' },
-    { src: '/media/clips/agent-4.mp4', label: 'Agent feature' },
-    { src: '/media/clips/reel-4.mp4', label: 'Highlight reel' },
-    { src: '/media/clips/agent-5.mp4', label: 'Agent brand' },
+    { src: `${CDN}/media/clips/reel-1.mp4`, label: 'Listing reel' },
+    { src: `${CDN}/media/clips/agent-2a.mp4`, label: 'Agent intro' },
+    { src: `${CDN}/media/clips/reel-3a.mp4`, label: 'Property tour' },
+    { src: `${CDN}/media/clips/agent-4.mp4`, label: 'Agent feature' },
+    { src: `${CDN}/media/clips/reel-4.mp4`, label: 'Highlight reel' },
+    { src: `${CDN}/media/clips/agent-5.mp4`, label: 'Agent brand' },
   ],
   // Full examples (client-selected)
   fullExamples: [
-    { src: '/media/full/reel-5-full.mp4', poster: '/media/posters/reel-5.webp', label: 'Reel — full example', vertical: true },
-    { src: '/media/full/reel-6-full.mp4', poster: '/media/posters/reel-6.webp', label: 'Reel — full example', vertical: true },
-    { src: '/media/full/reel-7-full.mp4', poster: '/media/posters/reel-7.webp', label: 'Reel — full example', vertical: true },
-    { src: '/media/full/agent-2-full.mp4', poster: '/media/posters/agent-2.webp', label: 'Agent reel — full example', vertical: true },
+    { src: `${CDN}/media/full/reel-5-full.mp4`, poster: `${CDN}/media/posters/reel-5.webp`, label: 'Reel — full example', vertical: true },
+    { src: `${CDN}/media/full/reel-6-full.mp4`, poster: `${CDN}/media/posters/reel-6.webp`, label: 'Reel — full example', vertical: true },
+    { src: `${CDN}/media/full/reel-7-full.mp4`, poster: `${CDN}/media/posters/reel-7.webp`, label: 'Reel — full example', vertical: true },
+    { src: `${CDN}/media/full/agent-2-full.mp4`, poster: `${CDN}/media/posters/agent-2.webp`, label: 'Agent reel — full example', vertical: true },
   ],
   cinematic: {
-    preview: '/media/clips/cine-1b.mp4',
-    full: '/media/full/cine-1-full.mp4',
-    poster: '/media/posters/cine-1.webp',
+    preview: `${CDN}/media/clips/cine-1b.mp4`,
+    full: `${CDN}/media/full/cine-1-full.mp4`,
+    poster: `${CDN}/media/posters/cine-1.webp`,
     label: 'Cinematic walkthrough',
   },
 }
@@ -266,8 +271,8 @@ export const PRICING = {
     title: 'Marketing kit — $30',
     blurb:
       'Property website, social assets and print materials generated for every listing. White-label ready.',
-    videoFull: '/media/full/marketing-kit-full.mp4',
-    poster: '/media/posters/marketing-kit.webp',
+    videoFull: `${CDN}/media/full/marketing-kit-full.mp4`,
+    poster: `${CDN}/media/posters/marketing-kit.webp`,
     cta: 'Learn more',
   },
 }

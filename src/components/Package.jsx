@@ -69,7 +69,7 @@ export default function Package() {
           <div className="package__media">
             <video
               ref={videoRef}
-              src="/media/clips/cine-2a.mp4"
+              src={PACKAGE.previewClip}
               muted
               loop
               playsInline
