@@ -26,6 +26,9 @@ if [ ! -d node_modules ] || [ package-lock.json -nt node_modules ]; then
   npm ci
 fi
 
+echo "▸ Removing old build"
+rm -rf dist
+
 echo "▸ Building"
 npm run build
 
