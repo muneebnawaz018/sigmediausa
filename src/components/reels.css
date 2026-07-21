@@ -49,13 +49,48 @@
 }
 
 .reels__phone-frame {
+  position: relative;
+  display: block;
+  width: 100%;
   aspect-ratio: 9 / 16;
   padding: 6px;
   border: 1px solid var(--sky-dim);
   border-radius: 22px;
   background: var(--dusk);
   overflow: hidden;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
   transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+/* Centered play badge — matches the Full-examples cards for a synced design */
+.reels__phone-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--glow);
+  color: var(--on-accent);
+  box-shadow: var(--shadow-glow);
+  pointer-events: none;
+  transition:
+    scale var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .reels__phone-frame:hover .reels__phone-play {
+    scale: 1.1;
+    background: var(--glow-bright);
+  }
 }
 
 .reels__phone:hover .reels__phone-frame {

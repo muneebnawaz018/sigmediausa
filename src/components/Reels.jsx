@@ -32,9 +32,17 @@ export default function Reels() {
           >
             {REELS.clips.map((clip) => (
               <figure className="reels__phone" key={clip.src}>
-                <div className="reels__phone-frame">
+                <button
+                  type="button"
+                  className="reels__phone-frame"
+                  aria-label={`Play ${clip.label}`}
+                  onClick={() => setModal({ src: clip.src, vertical: true, title: clip.label })}
+                >
                   <AutoVideo src={clip.src} threshold={0.4} className="reels__phone-video" />
-                </div>
+                  <span className="reels__phone-play" aria-hidden="true">
+                    <Play size={16} strokeWidth={0} fill="currentColor" />
+                  </span>
+                </button>
                 <figcaption className="reels__phone-label">{clip.label}</figcaption>
               </figure>
             ))}
