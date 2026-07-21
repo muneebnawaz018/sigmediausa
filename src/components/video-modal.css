@@ -43,12 +43,54 @@
   border: 1px solid rgba(141, 162, 192, 0.25);
   background: var(--ink-deep);
   box-shadow: var(--shadow-md);
+  transform-origin: center center;
+  touch-action: none;
+  transition: transform var(--dur-base) var(--ease-out);
 }
 
-.vmodal__close {
-  position: absolute;
-  top: -52px;
-  right: 0;
+/* While actively zoomed, drop the transition so pan/pinch track the finger,
+   and show a grab cursor for drag-to-pan. */
+.vmodal__body.is-zoomed video {
+  transition: none;
+  cursor: grab;
+}
+
+.vmodal__body.is-zoomed video:active {
+  cursor: grabbing;
+}
+
+/* Rotated: fill the viewport in landscape. Swap width/height then spin 90°
+   so the visual footprint is the full screen — vertical reels go wide. */
+.vmodal__body--rotated {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vmodal__body--rotated video {
+  width: 100dvh;
+  height: 100dvw;
+  max-height: none;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  object-fit: contain;
+  /* rotation itself is applied via inline transform (composed with zoom/pan) */
+}
+
+/* Controls float top-right of the viewport, upright in either state. */
+.vmodal__controls {
+  position: fixed;
+  top: max(var(--space-4), env(safe-area-inset-top));
+  right: max(var(--space-4), env(safe-area-inset-right));
+  z-index: 1;
+  display: flex;
+  gap: var(--space-3);
+}
+
+.vmodal__ctrl {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -58,17 +100,38 @@
   color: var(--cream);
   background: rgba(19, 28, 51, 0.8);
   border: 1px solid rgba(141, 162, 192, 0.25);
-  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
 }
 
-.vmodal__close:hover {
+.vmodal__ctrl:hover {
   background: var(--glow);
   color: var(--on-accent);
 }
 
+.vmodal__ctrl:active {
+  transform: scale(0.92);
+}
+
+.vmodal__ctrl:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.vmodal__ctrl[aria-pressed='true'] {
+  background: var(--glow);
+  color: var(--on-accent);
+  border-color: var(--glow);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .vmodal,
-  .vmodal__body {
+  .vmodal__body,
+  .vmodal__body video {
     animation: none;
+    transition: none;
   }
 }
