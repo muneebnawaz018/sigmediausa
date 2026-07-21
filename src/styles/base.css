@@ -117,6 +117,13 @@ h1, h2, h3, h4 {
   letter-spacing: 0.08em;
 }
 
+/* Small screens: long meta phrases may wrap instead of overflowing */
+@media (max-width: 480px) {
+  .exif__meta {
+    white-space: normal;
+  }
+}
+
 /* Section heading */
 .section-title {
   font-size: var(--text-3xl);
