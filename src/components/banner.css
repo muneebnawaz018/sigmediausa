@@ -12,14 +12,6 @@
   background: linear-gradient(90deg, var(--ink-deep) 0%, var(--dusk) 100%);
   border-bottom: 1px solid rgba(141, 162, 192, 0.16);
   animation: promo-in var(--dur-base) var(--ease-out);
-  /* 35mm film-strip perforations along both edges */
-  background-image:
-    radial-gradient(circle 1.5px at 50% 50%, rgba(244, 240, 232, 0.22) 99%, transparent),
-    radial-gradient(circle 1.5px at 50% 50%, rgba(244, 240, 232, 0.22) 99%, transparent),
-    linear-gradient(90deg, var(--ink-deep) 0%, var(--dusk) 100%);
-  background-size: 14px 5px, 14px 5px, 100% 100%;
-  background-position: 0 2px, 0 calc(100% - 2px), 0 0;
-  background-repeat: repeat-x, repeat-x, no-repeat;
 }
 
 @keyframes promo-in {
