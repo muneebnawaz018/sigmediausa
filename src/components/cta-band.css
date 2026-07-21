@@ -56,6 +56,23 @@
   font-variant-numeric: tabular-nums;
 }
 
+.cta-band__email {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  color: var(--cream);
+  text-decoration: none;
+  transition: color var(--dur-fast, 150ms) ease;
+}
+
+.cta-band__email:hover {
+  color: var(--glow);
+}
+
 .cta-band__hours {
   display: inline-flex;
   align-items: center;

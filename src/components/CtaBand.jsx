@@ -1,4 +1,4 @@
-import { Phone, Clock } from 'lucide-react'
+import { Phone, Clock, Mail } from 'lucide-react'
 import { CTA, MARKETS, CONTACT } from '../data/site.js'
 import Reveal from './Reveal.jsx'
 import './cta-band.css'
@@ -36,6 +36,11 @@ export default function CtaBand() {
               {dfw.code} · <span className="cta-band__num">{dfw.phone}</span>
             </a>
           </div>
+
+          <a className="cta-band__email" href={CONTACT.emailHref}>
+            <Mail size={14} aria-hidden="true" />
+            {CONTACT.email}
+          </a>
 
           <p className="cta-band__hours">
             <Clock size={14} aria-hidden="true" />

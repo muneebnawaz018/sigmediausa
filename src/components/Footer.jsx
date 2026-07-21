@@ -79,6 +79,11 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a className="footer__link" href={CONTACT.emailHref}>
+                  {CONTACT.email}
+                </a>
+              </li>
             </ul>
             <p className="footer__hours">Shooting · {CONTACT.hoursShooting}</p>
             <p className="footer__hours">Business · {CONTACT.hoursBusiness}</p>

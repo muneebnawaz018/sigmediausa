@@ -185,7 +185,7 @@
 
 @media (max-width: 900px) {
   .hero__grade {
-    top: calc(64px + var(--space-3));
+    top: calc(64px + var(--banner-h) + var(--space-3));
     right: var(--space-4);
   }
 

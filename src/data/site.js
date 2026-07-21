@@ -9,6 +9,8 @@ export const CONTACT = {
   phoneICTHref: 'tel:+13166657700',
   phoneDFW: '(972) 972-9346',
   phoneDFWHref: 'tel:+19729729346',
+  email: 'support@sigmediausa.com',
+  emailHref: 'mailto:support@sigmediausa.com',
   hoursShooting: 'Mon–Fri · 9:00 AM – 5:00 PM',
   hoursBusiness: 'Mon–Fri · 9:00 AM – 6:00 PM',
   instagram: 'https://www.instagram.com/sigmediausa/',
