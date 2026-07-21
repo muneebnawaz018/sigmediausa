@@ -1,13 +1,32 @@
+// Responsive sweep: screenshots the local preview build at common widths and
+// reports any horizontal overflow with the offending elements.
+// Usage: npm run build && npx vite preview --port 4173 &  then: node tools/respcheck.mjs
 import puppeteer from 'puppeteer-core'
+import { mkdirSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 
-const OUT = '/private/tmp/claude-501/-Users-muneeb-Desktop-Data-Development-sigmediausa/fef98e66-f197-42dc-9b3b-03387c34d664/scratchpad/shots'
-const URL = 'http://localhost:4173/'
+const OUT = process.env.RESPCHECK_OUT || join(tmpdir(), 'respcheck-shots')
+mkdirSync(OUT, { recursive: true })
+const URL = process.env.RESPCHECK_URL || 'http://localhost:4173/'
 const WIDTHS = [1440, 1280, 1024, 768, 600, 480, 390, 320]
 
-const browser = await puppeteer.launch({
-  executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-  headless: 'new',
-})
+const CHROME_PATHS = [
+  process.env.CHROME_PATH,
+  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  '/usr/bin/google-chrome',
+  '/usr/bin/chromium-browser',
+  'C:/Program Files/Google/Chrome/Application/chrome.exe',
+].filter(Boolean)
+
+const { existsSync } = await import('node:fs')
+const executablePath = CHROME_PATHS.find((p) => existsSync(p))
+if (!executablePath) {
+  console.error('Chrome not found — set CHROME_PATH env var to your Chrome/Chromium binary.')
+  process.exit(1)
+}
+
+const browser = await puppeteer.launch({ executablePath, headless: 'new' })
 
 for (const w of WIDTHS) {
   const page = await browser.newPage()
@@ -52,4 +71,4 @@ for (const w of WIDTHS) {
 }
 
 await browser.close()
-console.log('sweep done')
+console.log(`sweep done — screenshots in ${OUT}`)
