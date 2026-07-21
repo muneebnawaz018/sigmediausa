@@ -1,20 +1,12 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { X, RotateCw, ZoomIn, ZoomOut } from 'lucide-react'
-import { useBlobVideo } from '../hooks/useBlobVideo.js'
 import './video-modal.css'
 
 const MIN_ZOOM = 1
 const MAX_ZOOM = 4
 const ZOOM_STEP = 0.5
 
-// Only touch devices need the blob workaround — desktop browsers stream the
-// clip progressively even without range support, so they play instantly.
-const NEEDS_BLOB =
-  typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
-
 // Shared full-video player overlay. Opens with sound + native controls.
-// - Loads the clip into an in-memory blob so it plays on mobile (the CDN has no
-//   HTTP range support, which mobile browsers require); shows download progress.
 // - Rotate toggle spins the clip 90° to fill the viewport in landscape.
 // - Zoom: +/- buttons, wheel (desktop), pinch (touch), drag-to-pan when zoomed.
 // - Native download + fullscreen buttons are stripped (controlsList) so Chrome's
@@ -25,11 +17,6 @@ export default function VideoModal({ open, onClose, src, poster, vertical = fals
   const [rotated, setRotated] = useState(false)
   const [zoom, setZoom] = useState(1)
   const [pan, setPan] = useState({ x: 0, y: 0 })
-
-  const { blobUrl, loading, error, progress } = useBlobVideo(src, {
-    enabled: open && Boolean(src) && NEEDS_BLOB,
-  })
-  const videoSrc = NEEDS_BLOB ? blobUrl : src
 
   // Live gesture state kept in a ref so pointer handlers don't re-bind.
   const gesture = useRef({ pointers: new Map(), pinchDist: 0, pinchZoom: 1, panStart: null })
@@ -198,40 +185,24 @@ export default function VideoModal({ open, onClose, src, poster, vertical = fals
         className={`vmodal__body ${vertical ? 'vmodal__body--vertical' : ''} ${rotated ? 'vmodal__body--rotated' : ''} ${zoomed ? 'is-zoomed' : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
-        {videoSrc && (
-          <video
-            key={videoSrc}
-            src={videoSrc}
-            poster={poster}
-            controls
-            autoPlay
-            playsInline
-            controlsList="nodownload nofullscreen noremoteplayback"
-            disablePictureInPicture
-            onContextMenu={(e) => e.preventDefault()}
-            style={videoStyle}
-            onWheel={onWheel}
-            onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
-            onPointerUp={onPointerUp}
-            onPointerCancel={onPointerUp}
-          />
-        )}
-
-        {loading && (
-          <div className="vmodal__loader" role="status" aria-live="polite">
-            <span className="vmodal__spinner" aria-hidden="true" />
-            <span className="vmodal__loader-text">
-              Loading video{progress ? ` · ${Math.round(progress * 100)}%` : '…'}
-            </span>
-          </div>
-        )}
-
-        {error && (
-          <div className="vmodal__loader" role="alert">
-            <span className="vmodal__loader-text">Couldn’t load the video. Check your connection and try again.</span>
-          </div>
-        )}
+        <video
+          key={src}
+          src={src}
+          poster={poster}
+          controls
+          autoPlay
+          playsInline
+          preload="auto"
+          controlsList="nodownload nofullscreen noremoteplayback"
+          disablePictureInPicture
+          onContextMenu={(e) => e.preventDefault()}
+          style={videoStyle}
+          onWheel={onWheel}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
+        />
       </div>
     </div>
   )

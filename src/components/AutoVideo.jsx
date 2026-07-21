@@ -1,47 +1,47 @@
-import { useEffect, useRef, useState } from 'react'
-import { useBlobVideo } from '../hooks/useBlobVideo.js'
+import { useEffect, useRef } from 'react'
 
 // Muted preview loop that plays only while sufficiently on-screen and never
-// autoplays under prefers-reduced-motion. The clip is loaded into an in-memory
-// blob (see useBlobVideo) so it plays on mobile — where the CDN's lack of range
-// support would otherwise block playback — and starts only once fully buffered,
-// killing the stop-start stutter. The blob is fetched lazily the first time the
-// element nears the viewport.
+// autoplays under prefers-reduced-motion. Playback waits until the clip is
+// buffered enough to run without stalling, so it plays smoothly instead of
+// stop-starting to catch up.
 export default function AutoVideo({ src, poster, threshold = 0.35, className = '', label = '' }) {
   const ref = useRef(null)
-  const [nearby, setNearby] = useState(false)
-  const [onScreen, setOnScreen] = useState(false)
-  const { blobUrl } = useBlobVideo(src, { enabled: nearby })
+  const onScreen = useRef(false)
 
-  // Observe visibility: latch `nearby` (triggers the fetch) and track on-screen.
   useEffect(() => {
     const video = ref.current
     if (!video) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const playWhenReady = () => {
+      if (!onScreen.current) return
+      if (video.readyState >= 3) video.play().catch(() => {})
+      else video.addEventListener('canplaythrough', onReady, { once: true })
+    }
+    const onReady = () => {
+      if (onScreen.current) video.play().catch(() => {})
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setOnScreen(entry.isIntersecting)
-        if (entry.isIntersecting) setNearby(true)
+        onScreen.current = entry.isIntersecting
+        if (entry.isIntersecting) playWhenReady()
+        else video.pause()
       },
       { threshold },
     )
     observer.observe(video)
-    return () => observer.disconnect()
+    return () => {
+      video.removeEventListener('canplaythrough', onReady)
+      observer.disconnect()
+    }
   }, [threshold])
-
-  // Play once the blob is ready and the element is on-screen; pause otherwise.
-  useEffect(() => {
-    const video = ref.current
-    if (!video) return
-    if (onScreen && blobUrl) video.play().catch(() => {})
-    else video.pause()
-  }, [onScreen, blobUrl])
 
   return (
     <video
       ref={ref}
       className={className}
-      src={blobUrl || undefined}
+      src={src}
       poster={poster}
       muted
       loop

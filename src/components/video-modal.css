@@ -80,39 +80,6 @@
   /* rotation itself is applied via inline transform (composed with zoom/pan) */
 }
 
-/* Loading / error state — shown while the clip downloads into a blob. */
-.vmodal__loader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-4);
-  min-height: 42dvh;
-  padding: var(--space-8);
-  text-align: center;
-}
-
-.vmodal__spinner {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 3px solid rgba(141, 162, 192, 0.25);
-  border-top-color: var(--glow);
-  animation: vmodal-spin 0.8s linear infinite;
-}
-
-@keyframes vmodal-spin {
-  to { transform: rotate(360deg); }
-}
-
-.vmodal__loader-text {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  letter-spacing: 0.04em;
-  color: var(--slate);
-  font-variant-numeric: tabular-nums;
-}
-
 /* Controls float top-right of the viewport, upright in either state. */
 .vmodal__controls {
   position: fixed;
@@ -166,9 +133,5 @@
   .vmodal__body video {
     animation: none;
     transition: none;
-  }
-
-  .vmodal__spinner {
-    animation-duration: 1.6s;
   }
 }
