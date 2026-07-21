@@ -74,10 +74,10 @@ export const SERVICES = [
   {
     id: 'video',
     icon: 'Clapperboard',
-    title: 'Cinematic Video',
+    title: 'Video',
     blurb:
-      'Full cinematic walkthroughs, highlight reels and teasers cut for MLS, YouTube and social.',
-    meta: 'From $75',
+      'Full cinematic walkthroughs and highlight reels cut for MLS, YouTube and social.',
+    meta: 'From $100',
   },
   {
     id: 'drone',
@@ -188,18 +188,18 @@ export const REELS = {
   sub: 'Vertical reels for social, cinematic walkthroughs for MLS and YouTube — shot and cut in-house.',
   // Short muted preview loops (vertical 540x960)
   clips: [
-    { src: `${CDN}/media/clips/reel-1.mp4`, label: 'Listing reel' },
-    { src: `${CDN}/media/clips/agent-2a.mp4`, label: 'Agent intro' },
-    { src: `${CDN}/media/clips/reel-3a.mp4`, label: 'Property tour' },
-    { src: `${CDN}/media/clips/agent-4.mp4`, label: 'Agent feature' },
+    { src: `${CDN}/media/clips/reel-1.mp4`, label: 'Highlight reel' },
+    { src: `${CDN}/media/clips/agent-2a.mp4`, label: 'Agent reel' },
+    { src: `${CDN}/media/clips/reel-3a.mp4`, label: 'Highlight reel' },
+    { src: `${CDN}/media/clips/agent-4.mp4`, label: 'Agent reel' },
     { src: `${CDN}/media/clips/reel-4.mp4`, label: 'Highlight reel' },
-    { src: `${CDN}/media/clips/agent-5.mp4`, label: 'Agent brand' },
+    { src: `${CDN}/media/clips/agent-5.mp4`, label: 'Agent reel' },
   ],
   // Full examples (client-selected)
   fullExamples: [
-    { src: `${CDN}/media/full/reel-5-full.mp4`, poster: `${CDN}/media/posters/reel-5.webp`, label: 'Reel — full example', vertical: true },
-    { src: `${CDN}/media/full/reel-6-full.mp4`, poster: `${CDN}/media/posters/reel-6.webp`, label: 'Reel — full example', vertical: true },
-    { src: `${CDN}/media/full/reel-7-full.mp4`, poster: `${CDN}/media/posters/reel-7.webp`, label: 'Reel — full example', vertical: true },
+    { src: `${CDN}/media/full/reel-5-full.mp4`, poster: `${CDN}/media/posters/reel-5.webp`, label: 'Highlight reel — full example', vertical: true },
+    { src: `${CDN}/media/full/reel-6-full.mp4`, poster: `${CDN}/media/posters/reel-6.webp`, label: 'Highlight reel — full example', vertical: true },
+    { src: `${CDN}/media/full/reel-7-full.mp4`, poster: `${CDN}/media/posters/reel-7.webp`, label: 'Highlight reel — full example', vertical: true },
     { src: `${CDN}/media/full/agent-2-full.mp4`, poster: `${CDN}/media/posters/agent-2.webp`, label: 'Agent reel — full example', vertical: true },
   ],
   cinematic: {
@@ -227,7 +227,6 @@ export const PRICING = {
       rows: [
         { name: 'Cinematic video', price: '$200' },
         { name: 'Highlight reel', price: '$100' },
-        { name: 'Teaser reel', price: '$75' },
         { name: 'Agent intro & outro (any video)', price: '+$50' },
       ],
     },
