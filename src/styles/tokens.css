@@ -15,8 +15,8 @@
   --glow-bright: #ffc069; /* hover state */
   --glow-deep: #c77f24;   /* pressed state */
   --cream: #f8f5ee;       /* primary text — near white, warm */
-  --slate: #c3d0e4;       /* secondary text — light, high contrast on ink */
-  --slate-dim: #93a5c2;   /* tertiary text, captions */
+  --slate: #ccd7ea;       /* secondary text — light, high contrast on ink */
+  --slate-dim: #aebbd3;   /* tertiary text, captions — brightened, no longer grayish */
 
   /* Semantic */
   --bg: var(--ink);
@@ -54,7 +54,7 @@
   --space-12: 3rem;
   --space-16: 4rem;
   --space-24: 6rem;
-  --section-pad: clamp(4rem, 3rem + 6vw, 8rem);
+  --section-pad: clamp(3.5rem, 2.5rem + 5vw, 6.5rem);
 
   /* Layout */
   --container: 72rem;

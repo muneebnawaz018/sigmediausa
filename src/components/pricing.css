@@ -47,6 +47,8 @@
 }
 
 .pricing__kit-body {
+  display: flex;
+  flex-direction: column;
   padding: var(--space-6);
 }
 
@@ -63,7 +65,8 @@
 }
 
 .pricing__kit-btn {
-  margin-top: var(--space-4);
+  margin-top: var(--space-6);
+  align-self: center;
 }
 
 /* ---- Right column — rate tables ---- */

@@ -93,7 +93,7 @@
   font-size: var(--text-sm);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.04em;
-  color: var(--slate-dim);
+  color: var(--slate);
 }
 
 .coverage__coords svg {
@@ -190,5 +190,17 @@
 
   .coverage__phone {
     font-size: var(--text-lg);
+  }
+
+  /* Center the hours strip on phones only — stays left-aligned on tablet+ */
+  .coverage__hours {
+    gap: var(--space-2);
+  }
+
+  .coverage__hours-item {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: var(--space-1);
   }
 }
