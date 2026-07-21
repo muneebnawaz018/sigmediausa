@@ -1,46 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { Play } from 'lucide-react'
 import { REELS } from '../data/site.js'
 import Reveal from './Reveal.jsx'
 import VideoModal from './VideoModal.jsx'
+import AutoVideo from './AutoVideo.jsx'
 import './reels.css'
-
-// Muted preview loop that only plays while sufficiently on-screen.
-// Under prefers-reduced-motion it never autoplays.
-function AutoVideo({ src, poster, threshold = 0.4, className = '' }) {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const video = ref.current
-    if (!video) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) video.play().catch(() => {})
-          else video.pause()
-        })
-      },
-      { threshold },
-    )
-    observer.observe(video)
-    return () => observer.disconnect()
-  }, [threshold])
-
-  return (
-    // eslint-disable-next-line jsx-a11y/media-has-caption
-    <video
-      ref={ref}
-      className={className}
-      src={src}
-      poster={poster}
-      muted
-      loop
-      playsInline
-      preload="metadata"
-    />
-  )
-}
 
 export default function Reels() {
   const [modal, setModal] = useState(null)

@@ -115,8 +115,8 @@ export default function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <p className="footer__legal">{FOOTER.legal}</p>
           <p className="footer__micro">Shot · graded · delivered next day</p>
+          <p className="footer__legal">{FOOTER.legal}</p>
         </div>
       </div>
     </footer>

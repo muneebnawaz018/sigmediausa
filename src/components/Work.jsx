@@ -1,16 +1,25 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, RotateCw, Maximize, Minimize } from 'lucide-react'
 import { WORK } from '../data/site.js'
 import Reveal from './Reveal.jsx'
 import './work.css'
+
+// Element fullscreen isn't supported on iOS Safari (video-only there); hide the
+// button when the API is missing so it's never a dead control.
+const FULLSCREEN_SUPPORTED =
+  typeof document !== 'undefined' &&
+  !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen)
 
 // Filterable portfolio grid: category pills swap a featured-first mosaic,
 // tiles open a full-bleed lightbox with keyboard nav within the category.
 export default function Work() {
   const [activeId, setActiveId] = useState(WORK.categories[0].id)
   const [lightbox, setLightbox] = useState(null) // item index or null
+  const [rotated, setRotated] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
   const closeRef = useRef(null)
   const returnFocusRef = useRef(null)
+  const lbRef = useRef(null)
 
   const activeCategory = WORK.categories.find((c) => c.id === activeId)
   const items = activeCategory.items
@@ -18,20 +27,65 @@ export default function Work() {
 
   const openLightbox = (index, event) => {
     returnFocusRef.current = event.currentTarget
+    setRotated(false)
     setLightbox(index)
   }
 
   const closeLightbox = () => setLightbox(null)
 
-  const step = useCallback(
-    (dir) => setLightbox((i) => (i === null ? i : (i + dir + items.length) % items.length)),
-    [items.length],
-  )
+  const step = useCallback((dir) => {
+    setRotated(false)
+    setLightbox((i) => (i === null ? i : (i + dir + items.length) % items.length))
+  }, [items.length])
+
+  const toggleFullscreen = () => {
+    const el = lbRef.current
+    if (!el) return
+    const fsEl = document.fullscreenElement || document.webkitFullscreenElement
+    if (fsEl) {
+      ;(document.exitFullscreen || document.webkitExitFullscreen)?.call(document)
+    } else {
+      ;(el.requestFullscreen || el.webkitRequestFullscreen)?.call(el)
+    }
+  }
 
   const selectCategory = (id) => {
     setActiveId(id)
     setLightbox(null)
+    setRotated(false)
   }
+
+  // Track fullscreen state (incl. the user pressing Esc to leave fullscreen).
+  useEffect(() => {
+    const onFs = () =>
+      setIsFullscreen(!!(document.fullscreenElement || document.webkitFullscreenElement))
+    document.addEventListener('fullscreenchange', onFs)
+    document.addEventListener('webkitfullscreenchange', onFs)
+    return () => {
+      document.removeEventListener('fullscreenchange', onFs)
+      document.removeEventListener('webkitfullscreenchange', onFs)
+    }
+  }, [])
+
+  // Leave fullscreen when the lightbox closes.
+  useEffect(() => {
+    if (isOpen) return
+    if (document.fullscreenElement || document.webkitFullscreenElement) {
+      ;(document.exitFullscreen || document.webkitExitFullscreen)?.call(document)
+    }
+  }, [isOpen])
+
+  // Browser Back closes the lightbox instead of leaving the page.
+  useEffect(() => {
+    if (!isOpen) return
+    window.history.pushState({ workLightbox: true }, '')
+    const onPop = () => setLightbox(null)
+    window.addEventListener('popstate', onPop)
+    return () => {
+      window.removeEventListener('popstate', onPop)
+      if (window.history.state?.workLightbox) window.history.back()
+    }
+  }, [isOpen])
 
   // Lock body scroll + move focus while the lightbox is open
   useEffect(() => {
@@ -119,6 +173,7 @@ export default function Work() {
 
       {isOpen && (
         <div
+          ref={lbRef}
           className="work__lightbox"
           role="dialog"
           aria-modal="true"
@@ -127,15 +182,41 @@ export default function Work() {
             if (e.target === e.currentTarget) closeLightbox()
           }}
         >
-          <button
-            ref={closeRef}
-            type="button"
-            className="work__lb-close"
-            aria-label="Close image viewer"
-            onClick={closeLightbox}
-          >
-            <X size={22} aria-hidden="true" />
-          </button>
+          <div className="work__lb-controls">
+            <button
+              type="button"
+              className="work__lb-ctrl"
+              aria-pressed={rotated}
+              aria-label={rotated ? 'Rotate image upright' : 'Rotate image'}
+              onClick={() => setRotated((r) => !r)}
+            >
+              <RotateCw size={20} aria-hidden="true" />
+            </button>
+            {FULLSCREEN_SUPPORTED && (
+              <button
+                type="button"
+                className="work__lb-ctrl"
+                aria-pressed={isFullscreen}
+                aria-label={isFullscreen ? 'Exit fullscreen' : 'View fullscreen'}
+                onClick={toggleFullscreen}
+              >
+                {isFullscreen ? (
+                  <Minimize size={20} aria-hidden="true" />
+                ) : (
+                  <Maximize size={20} aria-hidden="true" />
+                )}
+              </button>
+            )}
+            <button
+              ref={closeRef}
+              type="button"
+              className="work__lb-ctrl"
+              aria-label="Close image viewer"
+              onClick={closeLightbox}
+            >
+              <X size={22} aria-hidden="true" />
+            </button>
+          </div>
 
           <button
             type="button"
@@ -146,8 +227,12 @@ export default function Work() {
             <ChevronLeft size={26} aria-hidden="true" />
           </button>
 
-          <figure className="work__lb-figure">
-            <img src={items[lightbox].src} alt={items[lightbox].alt} />
+          <figure className={`work__lb-figure${rotated ? ' is-rotated' : ''}`}>
+            <img
+              src={items[lightbox].src}
+              alt={items[lightbox].alt}
+              onContextMenu={(e) => e.preventDefault()}
+            />
             <figcaption className="work__lb-caption">
               <span className="work__lb-count">
                 {String(lightbox + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}

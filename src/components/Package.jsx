@@ -1,34 +1,12 @@
-import { useEffect, useRef } from 'react'
 import { Check, Zap } from 'lucide-react'
 import { PACKAGE, CONTACT } from '../data/site.js'
 import Reveal from './Reveal.jsx'
+import AutoVideo from './AutoVideo.jsx'
 import './package.css'
 
 // The $349 flagship offer — elevated band card, price lockup left,
 // autoplaying cinematic preview bleeding to the card edge on the right.
 export default function Package() {
-  const videoRef = useRef(null)
-
-  // Play only while >= 30% visible; never autoplay under reduced motion.
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
-          video.play().catch(() => {})
-        } else {
-          video.pause()
-        }
-      },
-      { threshold: [0, 0.3] },
-    )
-    observer.observe(video)
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <section id="package" className="section package">
       <div className="container container--wide">
@@ -67,14 +45,10 @@ export default function Package() {
           </div>
 
           <div className="package__media">
-            <video
-              ref={videoRef}
+            <AutoVideo
               src={PACKAGE.previewClip}
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-label="Cinematic walkthrough preview of a listing shot by SIGMEDIA"
+              threshold={0.3}
+              label="Cinematic walkthrough preview of a listing shot by SIGMEDIA"
             />
             <span className="package__media-blend" aria-hidden="true" />
           </div>
