@@ -19,15 +19,14 @@ export default function Banner() {
             </span>
           </span>
           {[
-            'Next-Day Turnaround',
-            'Easy Scheduling',
-            'Trendy Edits',
-            'Download the SIGMEDIAUSA App Today!',
-            'Signature Consistency & Quality',
-          ].map((item) => (
-            <span className="promo__chip" key={item}>
-              <span className="promo__star">✦</span>
-              <span className="promo__item">{item}</span>
+            { text: 'Next-Day Turnaround' },
+            { text: 'Easy Scheduling' },
+            { text: 'Trendy Edits' },
+            { text: 'Download the SIGMEDIAUSA App Today!', app: true },
+            { text: 'Signature Consistency & Quality' },
+          ].map(({ text, app }) => (
+            <span className={`promo__chip promo__frame${app ? ' promo__frame--app' : ''}`} key={text}>
+              <span className="promo__item">{text}</span>
             </span>
           ))}
         </span>
