@@ -51,7 +51,7 @@ export const HERO = {
   titleB: 'We position them to compete.',
   sub: 'SIGMEDIA is the media partner trusted by high-performing agents who refuse to cut corners. Easy scheduling. Reliable turnaround. Elite-level presentation — every time.',
   ctaPrimary: 'Schedule a shoot',
-  ctaSecondary: 'See the work',
+  ctaSecondary: 'See our work',
   image: `${CDN}/media/photos/hero-2560.webp`,
   imageSmall: `${CDN}/media/photos/hero-1280.webp`,
   exif: [
@@ -134,7 +134,7 @@ export const PACKAGE = {
 }
 
 export const WORK = {
-  eyebrow: 'The work',
+  eyebrow: 'Our work',
   title: 'Shot to stop the scroll.',
   categories: [
     {

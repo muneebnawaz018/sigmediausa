@@ -1,30 +1,33 @@
-import { useEffect, useState } from 'react'
-import { HERO, CONTACT } from '../data/site.js'
-import './hero.css'
+import { useEffect, useState } from "react";
+import { HERO, CONTACT } from "../data/site.js";
+import "./hero.css";
 
 // Signature moment: the hero photo loads as a flat, ungraded frame and
 // "develops" into the finished virtual-twilight shot — the same edit
 // SIGMEDIA sells. EXIF readout confirms the grade once it lands.
 export default function Hero() {
-  const [developed, setDeveloped] = useState(false)
+  const [developed, setDeveloped] = useState(false);
 
   useEffect(() => {
-    const img = new Image()
-    img.src = window.innerWidth > 900 ? HERO.image : HERO.imageSmall
-    let timer
+    const img = new Image();
+    img.src = window.innerWidth > 900 ? HERO.image : HERO.imageSmall;
+    let timer;
     const start = () => {
-      timer = setTimeout(() => setDeveloped(true), 350)
-    }
-    if (img.complete) start()
+      timer = setTimeout(() => setDeveloped(true), 350);
+    };
+    if (img.complete) start();
     else {
-      img.onload = start
-      img.onerror = start
+      img.onload = start;
+      img.onerror = start;
     }
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <section className={`hero ${developed ? 'hero--developed' : ''}`} aria-label="SIGMEDIA — real estate media">
+    <section
+      className={`hero ${developed ? "hero--developed" : ""}`}
+      aria-label="SIGMEDIA — real estate media"
+    >
       <picture className="hero__media">
         <source media="(max-width: 900px)" srcSet={HERO.imageSmall} />
         <img
@@ -37,7 +40,7 @@ export default function Hero() {
 
       <div className="hero__grade" aria-hidden="true">
         <span className="hero__grade-dot" />
-        {developed ? 'VIRTUAL TWILIGHT · GRADED' : 'RAW · DEVELOPING…'}
+        {developed ? "VIRTUAL TWILIGHT" : "RAW · DEVELOPING…"}
       </div>
 
       <div className="hero__content container container--wide">
@@ -66,5 +69,5 @@ export default function Hero() {
         ))}
       </dl>
     </section>
-  )
+  );
 }

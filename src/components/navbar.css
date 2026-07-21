@@ -4,7 +4,7 @@
 
 .nav {
   position: fixed;
-  top: 0;
+  top: var(--banner-h);
   left: 0;
   right: 0;
   z-index: var(--z-nav);
@@ -132,7 +132,7 @@
   .nav__sheet {
     display: block;
     position: fixed;
-    inset: 76px 0 0 0;
+    inset: calc(var(--banner-h) + 76px) 0 0 0;
     /* Solid — guarantees no page content bleeds through */
     background: var(--ink);
     z-index: calc(var(--z-nav) - 1);

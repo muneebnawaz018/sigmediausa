@@ -81,5 +81,22 @@
 
   /* Z-scale */
   --z-nav: 100;
+  --z-banner: 150;
   --z-overlay: 200;
+
+  /* Promo banner height — nav + hero offsets read this; collapses to 0 when dismissed */
+  --banner-h: 44px;
+}
+
+:root.banner-dismissed {
+  --banner-h: 0px;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --banner-h: 40px;
+  }
+  :root.banner-dismissed {
+    --banner-h: 0px;
+  }
 }

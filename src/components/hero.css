@@ -11,7 +11,7 @@
   overflow: hidden;
   isolation: isolate;
   /* keep bottom-anchored content clear of the fixed nav + grade chip when it overflows the viewport */
-  padding-top: calc(72px + var(--space-24));
+  padding-top: calc(72px + var(--banner-h) + var(--space-24));
 }
 
 .hero__media,
@@ -52,7 +52,7 @@
 /* Grade status chip — top right */
 .hero__grade {
   position: absolute;
-  top: calc(72px + var(--space-4));
+  top: calc(72px + var(--banner-h) + var(--space-4));
   right: var(--gutter);
   display: inline-flex;
   align-items: center;

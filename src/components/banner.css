@@ -1,0 +1,137 @@
+/* ============================================
+   Promo banner — dark, on-theme, revolving marquee
+   ============================================ */
+
+.promo {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-banner);
+  height: var(--banner-h);
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, var(--ink-deep) 0%, var(--dusk) 100%);
+  border-bottom: 1px solid rgba(141, 162, 192, 0.16);
+  animation: promo-in var(--dur-base) var(--ease-out);
+}
+
+@keyframes promo-in {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+/* Whole marquee links to the pricing / kit section */
+.promo__marquee {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: var(--cream);
+  /* fade both edges so text slides in/out softly */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent);
+}
+
+/* Single chip crosses the bar once per pass — no tiling */
+.promo__track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  animation: promo-marquee 18s linear infinite;
+}
+
+@keyframes promo-marquee {
+  from { transform: translateX(100vw); }
+  to { transform: translateX(-100%); }
+}
+
+.promo__marquee:hover .promo__track {
+  animation-play-state: paused;
+}
+
+/* One repeated deal chip */
+.promo__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-inline: var(--space-6);
+  font-size: var(--text-sm);
+  letter-spacing: 0.01em;
+}
+
+.promo__star {
+  color: var(--glow);
+  font-size: 0.85em;
+  opacity: 0.9;
+}
+
+.promo__deal {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.promo__deal strong {
+  color: var(--cream);
+  font-weight: 700;
+}
+
+.promo__price {
+  color: var(--glow);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.promo__was {
+  color: var(--slate-dim);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+.promo__note {
+  color: var(--slate);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 600px) {
+  .promo__chip {
+    gap: var(--space-2);
+    padding-inline: var(--space-4);
+    font-size: var(--text-xs);
+  }
+
+  .promo__note {
+    display: none;
+  }
+
+  .promo__marquee {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo {
+    animation: none;
+  }
+
+  /* No revolve — pin the chip in view instead of leaving it parked off-screen */
+  .promo__track {
+    animation: none;
+    left: var(--gutter);
+    transform: none;
+  }
+}

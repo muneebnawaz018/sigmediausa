@@ -1,3 +1,4 @@
+import Banner from './components/Banner.jsx'
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import Services from './components/Services.jsx'
@@ -15,6 +16,7 @@ export default function App() {
       <a href="#main" className="skip-link">
         Skip to main content
       </a>
+      <Banner />
       <Navbar />
       <main id="main">
         <Hero />
