@@ -19,7 +19,7 @@ export default function Coverage() {
 
         <div className="coverage__markets">
           {MARKETS.map((market, i) => (
-            <Reveal key={market.id} delay={i * 120} className="coverage__cell">
+            <Reveal key={market.id} delay={i * 140} className="coverage__cell reveal--scale">
               <article className="coverage__card">
                 <span className="coverage__watermark" aria-hidden="true">
                   {market.code}

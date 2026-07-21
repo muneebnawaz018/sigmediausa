@@ -49,12 +49,14 @@
   margin-bottom: var(--space-6);
   transition:
     background var(--dur-fast) var(--ease-out),
-    color var(--dur-fast) var(--ease-out);
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
 }
 
 .services__card:hover .services__icon {
   background: rgba(240, 168, 75, 0.22);
   color: var(--glow-bright);
+  transform: translateY(-3px) scale(1.08) rotate(-4deg);
 }
 
 .services__name {

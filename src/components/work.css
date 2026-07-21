@@ -59,13 +59,25 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
-  animation: work-grid-in 300ms var(--ease-out) both;
 }
+
+/* Tiles stagger in on load and on every category switch (grid re-keys).
+   backwards (not both) so the finished animation doesn't trap the hover transform. */
+.work__tile {
+  animation: work-grid-in 480ms var(--ease-out) backwards;
+}
+
+.work__tile:nth-child(1) { animation-delay: 0ms; }
+.work__tile:nth-child(2) { animation-delay: 60ms; }
+.work__tile:nth-child(3) { animation-delay: 120ms; }
+.work__tile:nth-child(4) { animation-delay: 180ms; }
+.work__tile:nth-child(5) { animation-delay: 240ms; }
+.work__tile:nth-child(6) { animation-delay: 300ms; }
 
 @keyframes work-grid-in {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(18px) scale(0.98);
   }
   to {
     opacity: 1;
@@ -103,12 +115,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--dur-base) var(--ease-out);
+  transition: transform var(--dur-slow) var(--ease-out);
 }
 
 .work__tile:hover img,
 .work__tile:focus-visible img {
-  transform: scale(1.03);
+  transform: scale(1.07);
 }
 
 /* Caption overlay — gradient scrim, fades in on hover/focus */

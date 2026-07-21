@@ -67,6 +67,16 @@
   height: 100%;
   object-fit: cover;
   border-radius: 16px;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.reels__phone-frame {
+  transition: border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.reels__phone:hover .reels__phone-frame {
+  transform: translateY(-4px);
 }
 
 .reels__phone-label {
@@ -123,6 +133,14 @@
   width: 100%;
   aspect-ratio: 9 / 16;
   object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .reels__card:hover img,
+  .reels__phone:hover .reels__phone-video {
+    transform: scale(1.06);
+  }
 }
 
 .reels__play {

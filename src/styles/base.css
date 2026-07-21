@@ -154,12 +154,21 @@ h1, h2, h3, h4 {
 }
 
 .btn:active {
-  transform: scale(0.97);
+  transform: translateY(0) scale(0.96);
 }
 
 .btn--primary {
   background: var(--glow);
   color: var(--on-accent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn--primary:hover {
+    transform: translateY(-2px);
+  }
+  .btn--ghost:hover {
+    transform: translateY(-2px);
+  }
 }
 
 .btn--primary:hover {
@@ -177,17 +186,46 @@ h1, h2, h3, h4 {
   color: var(--glow);
 }
 
-/* Scroll reveal — respects reduced motion */
+/* Scroll reveal — respects reduced motion.
+   Default = fade + rise. Variants add scale / directional slide. */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity var(--dur-slow) var(--ease-out),
-    transform var(--dur-slow) var(--ease-out);
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.reveal--scale {
+  transform: translateY(28px) scale(0.97);
+}
+
+.reveal--left {
+  transform: translateX(-32px);
+}
+
+.reveal--right {
+  transform: translateX(32px);
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* Desktop-only image zoom — pairs with an overflow:hidden container */
+@media (hover: hover) and (pointer: fine) {
+  .zoom-wrap {
+    overflow: hidden;
+  }
+  .zoom-wrap img,
+  .zoom-wrap video {
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+  .zoom-wrap:hover img,
+  .zoom-wrap:hover video {
+    transform: scale(1.06);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

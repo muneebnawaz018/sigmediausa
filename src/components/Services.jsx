@@ -31,7 +31,7 @@ export default function Services() {
           {SERVICES.map((service, index) => {
             const Icon = ICONS[service.icon]
             return (
-              <Reveal as="li" key={service.id} delay={index * 70} className="services__item">
+              <Reveal as="li" key={service.id} delay={index * 80} className="services__item reveal--scale">
                 <article className="services__card">
                   <span className="services__icon" aria-hidden="true">
                     {Icon ? <Icon size={24} strokeWidth={1.75} /> : null}

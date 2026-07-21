@@ -271,6 +271,7 @@ export const PRICING = {
     title: 'Marketing kit — $30',
     blurb:
       'Property website, social assets and print materials generated for every listing. White-label ready.',
+    previewClip: `${CDN}/media/clips/marketing-kit.mp4`,
     videoFull: `${CDN}/media/full/marketing-kit-full.mp4`,
     poster: `${CDN}/media/posters/marketing-kit.webp`,
     cta: 'Learn more',

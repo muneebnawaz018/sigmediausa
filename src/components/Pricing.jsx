@@ -3,6 +3,7 @@ import { ChevronDown, Play } from 'lucide-react'
 import { PRICING } from '../data/site.js'
 import Reveal from './Reveal.jsx'
 import VideoModal from './VideoModal.jsx'
+import AutoVideo from './AutoVideo.jsx'
 import './pricing.css'
 
 // Rate-card rows: name · dotted leader · price
@@ -35,27 +36,33 @@ export default function Pricing() {
             <h2 className="section-title">{PRICING.title}</h2>
             <p className="section-lede">{PRICING.sub}</p>
 
-            <div className="pricing__kit">
+            <button
+              type="button"
+              className="pricing__kit"
+              onClick={() => setKitOpen(true)}
+              aria-label="Play the marketing kit walkthrough"
+            >
               <div className="pricing__kit-media">
-                <img
-                  src={PRICING.marketingKit.poster}
-                  alt="Preview of the SIGMEDIA marketing kit — property website, social assets and print materials for a listing"
-                  loading="lazy"
+                <AutoVideo
+                  src={PRICING.marketingKit.previewClip}
+                  poster={PRICING.marketingKit.poster}
+                  className="pricing__kit-video"
+                  label="Marketing kit walkthrough preview"
                 />
+                <span className="pricing__kit-scrim" aria-hidden="true" />
+                <span className="pricing__kit-play" aria-hidden="true">
+                  <Play size={22} strokeWidth={0} fill="currentColor" />
+                </span>
               </div>
               <div className="pricing__kit-body">
                 <h3 className="pricing__kit-title">{PRICING.marketingKit.title}</h3>
                 <p className="pricing__kit-blurb">{PRICING.marketingKit.blurb}</p>
-                <button
-                  type="button"
-                  className="btn btn--ghost pricing__kit-btn"
-                  onClick={() => setKitOpen(true)}
-                >
+                <span className="btn btn--ghost pricing__kit-btn">
                   <Play size={18} aria-hidden="true" />
                   {PRICING.marketingKit.cta}
-                </button>
+                </span>
               </div>
-            </div>
+            </button>
           </Reveal>
 
           {/* RIGHT — photo tiers + à la carte accordions */}
