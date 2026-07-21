@@ -168,8 +168,10 @@
     padding: var(--space-6);
   }
 
+  /* One column so labels like "Social media reel" never wrap mid-phrase */
   .package__list {
-    gap: var(--space-3) var(--space-4);
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
   }
 
   .package__cta {

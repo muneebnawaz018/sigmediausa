@@ -131,11 +131,13 @@
 @media (max-width: 900px) {
   .footer__grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-12) var(--space-6);
+    gap: var(--space-10) var(--space-6);
   }
 
+  /* Brand spans the top so the two link columns sit tight below it */
   .footer__col--brand {
-    max-width: 40ch;
+    grid-column: 1 / -1;
+    max-width: 46ch;
   }
 }
 
@@ -144,12 +146,19 @@
     padding-block: var(--space-12) var(--space-8);
   }
 
+  .footer__bottom {
+    margin-top: var(--space-10);
+  }
+}
+
+@media (max-width: 440px) {
   .footer__grid {
     grid-template-columns: 1fr;
-    gap: var(--space-8);
+    gap: var(--space-6);
   }
 
-  .footer__bottom {
-    margin-top: var(--space-12);
+  /* Trim per-link air so the stacked footer reads tighter, not sparse */
+  .footer__link {
+    min-height: 40px;
   }
 }

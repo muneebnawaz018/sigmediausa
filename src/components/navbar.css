@@ -132,10 +132,10 @@
   .nav__sheet {
     display: block;
     position: fixed;
-    inset: 72px 0 0 0;
-    background: rgba(10, 15, 30, 0.97);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    inset: 76px 0 0 0;
+    /* Solid — guarantees no page content bleeds through */
+    background: var(--ink);
+    z-index: calc(var(--z-nav) - 1);
     padding: var(--space-8) var(--gutter);
     opacity: 0;
     visibility: hidden;
