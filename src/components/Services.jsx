@@ -18,7 +18,7 @@ export default function Services() {
       <div className="container">
         <Reveal className="services__header">
           <p className="exif">
-            Services <span className="exif__meta">· f/8 · ISO 100</span>
+            Services <span className="exif__meta">· next-day turnaround</span>
           </p>
           <h2 className="section-title">Every listing, fully armed.</h2>
           <p className="section-lede">

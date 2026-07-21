@@ -12,7 +12,7 @@ export default function CtaBand() {
     <section id="contact" className="section cta-band" aria-labelledby="cta-band-title">
       <div className="container">
         <Reveal as="p" className="exif cta-band__eyebrow">
-          {CTA.eyebrow} <span className="exif__meta">· f/8 · dusk</span>
+          {CTA.eyebrow} <span className="exif__meta">· download the SIGMEDIAUSA app today!</span>
         </Reveal>
 
         <Reveal as="h2" id="cta-band-title" delay={80} className="cta-band__title">

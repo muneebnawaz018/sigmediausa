@@ -11,7 +11,7 @@ export default function Coverage() {
       <div className="container">
         <Reveal>
           <p className="exif">
-            {COVERAGE.eyebrow} <span className="exif__meta">· 37.68°N / 32.77°N</span>
+            {COVERAGE.eyebrow} <span className="exif__meta">· easy scheduling</span>
           </p>
           <h2 className="section-title">{COVERAGE.title}</h2>
           <p className="section-lede">{COVERAGE.sub}</p>

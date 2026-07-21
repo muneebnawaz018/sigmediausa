@@ -18,6 +18,18 @@ export default function Banner() {
               <span className="promo__note">white-label, every listing</span>
             </span>
           </span>
+          {[
+            'Next-Day Turnaround',
+            'Easy Scheduling',
+            'Trendy Edits',
+            'Download the SIGMEDIAUSA App Today!',
+            'Signature Consistency & Quality',
+          ].map((item) => (
+            <span className="promo__chip" key={item}>
+              <span className="promo__star">✦</span>
+              <span className="promo__item">{item}</span>
+            </span>
+          ))}
         </span>
       </a>
     </aside>

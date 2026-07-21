@@ -14,7 +14,7 @@ export default function Reels() {
       <div className="container">
         <Reveal>
           <p className="exif">
-            {REELS.eyebrow} <span className="exif__meta">· 30fps · vertical + wide</span>
+            {REELS.eyebrow} <span className="exif__meta">· trendy edits</span>
           </p>
           <h2 className="section-title">{REELS.title}</h2>
           <p className="section-lede">{REELS.sub}</p>

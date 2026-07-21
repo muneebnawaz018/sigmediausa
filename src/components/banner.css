@@ -44,7 +44,7 @@
   align-items: center;
   white-space: nowrap;
   will-change: transform;
-  animation: promo-marquee 18s linear infinite;
+  animation: promo-marquee 42s linear infinite;
 }
 
 @keyframes promo-marquee {
@@ -88,6 +88,12 @@
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
   font-weight: 700;
+}
+
+.promo__item {
+  color: var(--cream);
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .promo__was {

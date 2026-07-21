@@ -117,7 +117,7 @@ export const PACKAGE = {
   eyebrow: 'The SIGMEDIA Package',
   price: '$349',
   priceNote: 'starting at',
-  previewClip: `${CDN}/media/clips/cine-2a.mp4`,
+  previewClip: `${CDN}/media/clips/reel-3a.mp4`,
   title: 'Everything a listing needs. One shoot.',
   blurb:
     'One appointment, next-day delivery, and a listing that shows up everywhere it matters — MLS, social, print and search.',

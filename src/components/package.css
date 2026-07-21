@@ -115,7 +115,8 @@
   min-height: 100%;
 }
 
-.package__media video {
+.package__media video,
+.package__media img {
   position: absolute;
   inset: 0;
   width: 100%;

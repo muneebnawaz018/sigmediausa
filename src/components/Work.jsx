@@ -131,7 +131,7 @@ export default function Work() {
         <Reveal className="work__header">
           <div className="work__heading">
             <p className="exif">
-              {WORK.eyebrow} <span className="exif__meta">· 24mm · 1/250s</span>
+              {WORK.eyebrow} <span className="exif__meta">· signature consistency & quality</span>
             </p>
             <h2 className="section-title">{WORK.title}</h2>
           </div>

@@ -13,7 +13,7 @@ export default function Package() {
         <Reveal className="package__card">
           <div className="package__body">
             <p className="exif">
-              {PACKAGE.eyebrow} <span className="exif__meta">· one shoot</span>
+              {PACKAGE.eyebrow} <span className="exif__meta">· easy scheduling</span>
             </p>
 
             <p className="package__price-lockup">
@@ -48,7 +48,7 @@ export default function Package() {
             <AutoVideo
               src={PACKAGE.previewClip}
               threshold={0.3}
-              label="Cinematic walkthrough preview of a listing shot by SIGMEDIA"
+              label="Twilight listing reel shot by SIGMEDIA"
             />
             <span className="package__media-blend" aria-hidden="true" />
           </div>
