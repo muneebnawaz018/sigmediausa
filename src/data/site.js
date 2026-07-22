@@ -15,7 +15,7 @@ export const CONTACT = {
   hoursBusiness: 'Mon–Fri · 9:00 AM – 6:00 PM',
   instagram: 'https://www.instagram.com/sigmediausa/',
   facebook: 'https://www.facebook.com/sigmediausa/',
-  scheduleUrl: '#contact',
+  scheduleUrl: 'https://listings.sigmediausa.com/order',
 }
 
 export const MARKETS = [
