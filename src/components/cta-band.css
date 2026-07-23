@@ -57,19 +57,81 @@
 }
 
 /* Eyebrow app-download text acts as a button opening the store modal */
+/* App CTA — reads as a button, not a sentence */
+.cta-band__app-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-4);
+}
+
 .cta-band__app-link {
-  background: none;
-  border: 0;
-  padding: 0;
-  font: inherit;
-  letter-spacing: inherit;
-  text-transform: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  padding: var(--space-3) var(--space-6);
+  background: color-mix(in srgb, var(--glow) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--glow) 42%, transparent);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--glow);
   cursor: pointer;
-  transition: color var(--dur-fast, 150ms) ease;
+  transition:
+    background var(--dur-fast, 150ms) ease,
+    border-color var(--dur-fast, 150ms) ease,
+    color var(--dur-fast, 150ms) ease,
+    transform var(--dur-fast, 150ms) ease;
+}
+
+.cta-band__app-link svg {
+  flex-shrink: 0;
+}
+
+.cta-band__app-arrow {
+  transition: transform var(--dur-fast, 150ms) ease;
 }
 
 .cta-band__app-link:hover {
-  color: var(--glow);
+  background: color-mix(in srgb, var(--glow) 18%, transparent);
+  border-color: var(--glow);
+  color: var(--glow-bright);
+  transform: translateY(-2px);
+}
+
+.cta-band__app-link:hover .cta-band__app-arrow {
+  transform: translateX(3px);
+}
+
+.cta-band__app-link:focus-visible {
+  outline: 2px solid var(--glow);
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .cta-band__app-link {
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    letter-spacing: 0.06em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-band__app-link,
+  .cta-band__app-arrow {
+    transition: none;
+  }
+
+  .cta-band__app-link:hover {
+    transform: none;
+  }
+
+  .cta-band__app-link:hover .cta-band__app-arrow {
+    transform: none;
+  }
 }
 
 .cta-band__email {

@@ -1,4 +1,4 @@
-import { Phone, Clock, Mail } from 'lucide-react'
+import { Phone, Clock, Mail, Smartphone, ArrowRight } from 'lucide-react'
 import { CTA, MARKETS, CONTACT } from '../data/site.js'
 import { openAppModal } from './AppModal.jsx'
 import Reveal from './Reveal.jsx'
@@ -13,9 +13,14 @@ export default function CtaBand() {
     <section id="contact" className="section cta-band" aria-labelledby="cta-band-title">
       <div className="container">
         <Reveal as="p" className="exif cta-band__eyebrow">
-          {CTA.eyebrow}{' '}
-          <button className="exif__meta cta-band__app-link" onClick={openAppModal}>
-            · download the SIGMEDIAUSA app today!
+          {CTA.eyebrow}
+        </Reveal>
+
+        <Reveal delay={40} className="cta-band__app-cta">
+          <button className="cta-band__app-link" onClick={openAppModal}>
+            <Smartphone size={15} aria-hidden="true" />
+            Download the SIGMEDIAUSA app today!
+            <ArrowRight size={15} aria-hidden="true" className="cta-band__app-arrow" />
           </button>
         </Reveal>
 
