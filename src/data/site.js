@@ -76,7 +76,7 @@ export const HERO = {
   imageSmall: `${CDN}/media/photos/hero-1280.webp`,
   exif: [
     { k: 'TURNAROUND', v: 'Next day' },
-    { k: 'MARKETS', v: 'ICT · DFW' },
+    { k: 'MARKETS', v: 'ICT · DFW · OKC · TUL' },
     { k: 'PACKAGE', v: 'From $349' },
     { k: 'EDIT', v: 'Virtual twilight' },
   ],
@@ -299,8 +299,8 @@ export const PRICING = {
 
 export const COVERAGE = {
   eyebrow: 'Coverage',
-  title: 'Two markets. One standard.',
-  sub: 'Same crews, same editing bench, same next-day promise in both metros.',
+  title: 'One standard. Every market.',
+  sub: 'Same crews, same editing bench, same next-day promise in every metro we cover.',
   hoursShooting: CONTACT.hoursShooting,
   hoursBusiness: CONTACT.hoursBusiness,
 }
