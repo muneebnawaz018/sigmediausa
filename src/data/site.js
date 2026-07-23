@@ -16,6 +16,8 @@ export const CONTACT = {
   instagram: 'https://www.instagram.com/sigmediausa/',
   facebook: 'https://www.facebook.com/sigmediausa/',
   scheduleUrl: 'https://listings.sigmediausa.com/order',
+  appIos: 'https://apps.apple.com/us/app/sigmediausa/id6759012999',
+  appAndroid: 'https://play.google.com/store/apps/details?id=pics.hd.signaturerealestatemedia',
 }
 
 export const MARKETS = [
@@ -36,6 +38,22 @@ export const MARKETS = [
     coords: '32.7767° N · 96.7970° W',
     phone: CONTACT.phoneDFW,
     phoneHref: CONTACT.phoneDFWHref,
+  },
+  {
+    id: 'okc',
+    code: 'OKC',
+    name: 'Oklahoma City, OK',
+    area: 'New market — launching soon',
+    coords: '35.4676° N · 97.5164° W',
+    comingSoon: true,
+  },
+  {
+    id: 'tul',
+    code: 'TUL',
+    name: 'Tulsa, OK',
+    area: 'New market — launching soon',
+    coords: '36.1540° N · 95.9928° W',
+    comingSoon: true,
   },
 ]
 

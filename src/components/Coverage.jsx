@@ -20,7 +20,9 @@ export default function Coverage() {
         <div className="coverage__markets">
           {MARKETS.map((market, i) => (
             <Reveal key={market.id} delay={i * 140} className="coverage__cell reveal--scale">
-              <article className="coverage__card">
+              <article
+                className={`coverage__card${market.comingSoon ? ' coverage__card--soon' : ''}`}
+              >
                 <span className="coverage__watermark" aria-hidden="true">
                   {market.code}
                 </span>
@@ -31,14 +33,21 @@ export default function Coverage() {
                   <MapPin size={15} aria-hidden="true" />
                   {market.coords}
                 </p>
-                <a
-                  className="coverage__phone"
-                  href={market.phoneHref}
-                  aria-label={`Call the ${market.name} line: ${market.phone}`}
-                >
-                  <Phone size={20} aria-hidden="true" />
-                  {market.phone}
-                </a>
+                {market.comingSoon ? (
+                  <span className="coverage__soon">
+                    <Clock size={16} aria-hidden="true" />
+                    Coming soon
+                  </span>
+                ) : (
+                  <a
+                    className="coverage__phone"
+                    href={market.phoneHref}
+                    aria-label={`Call the ${market.name} line: ${market.phone}`}
+                  >
+                    <Phone size={20} aria-hidden="true" />
+                    {market.phone}
+                  </a>
+                )}
               </article>
             </Reveal>
           ))}

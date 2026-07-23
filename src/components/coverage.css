@@ -125,6 +125,36 @@
   color: var(--glow-bright);
 }
 
+/* Coming-soon market — no live line yet, softened + badge in the phone slot */
+.coverage__card--soon .coverage__code,
+.coverage__card--soon .coverage__watermark {
+  color: var(--slate);
+}
+
+.coverage__soon {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 48px;
+  margin-top: var(--space-8);
+  padding: var(--space-3) var(--space-6);
+  border: 1px dashed color-mix(in srgb, var(--glow) 45%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--glow) 8%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--glow);
+}
+
+.coverage__soon svg {
+  flex-shrink: 0;
+}
+
 /* Hours strip — mirrors the card grid so each item sits under its card */
 .coverage__hours {
   display: grid;

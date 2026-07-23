@@ -9,6 +9,7 @@ import Pricing from './components/Pricing.jsx'
 import Coverage from './components/Coverage.jsx'
 import CtaBand from './components/CtaBand.jsx'
 import Footer from './components/Footer.jsx'
+import AppModal from './components/AppModal.jsx'
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
         <CtaBand />
       </main>
       <Footer />
+      <AppModal />
     </>
   )
 }

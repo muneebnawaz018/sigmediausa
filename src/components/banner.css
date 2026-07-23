@@ -34,22 +34,26 @@
   mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent);
 }
 
-/* Single chip crosses the bar once per pass — no tiling */
+/* Tiled sequences revolve seamlessly — the track holds several copies and
+   shifts by exactly half its width, so content is always filling the bar */
 .promo__track {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
   display: flex;
   align-items: center;
+  width: max-content;
   white-space: nowrap;
   will-change: transform;
-  animation: promo-marquee 42s linear infinite;
+  animation: promo-marquee 45s linear infinite;
+}
+
+.promo__group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
 }
 
 @keyframes promo-marquee {
-  from { transform: translateX(100vw); }
-  to { transform: translateX(-100%); }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 .promo__marquee:hover .promo__track {
@@ -88,6 +92,27 @@
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
   font-weight: 700;
+}
+
+/* Interactive chips: link + button reset so they read like the rest of the strip */
+.promo__kit-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.promo__app-btn {
+  background: none;
+  border-top: 0;
+  border-bottom: 0;
+  padding-block: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.promo__app-btn:hover .promo__item {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* Phrase chips read as film frames — divided by frame lines, mono like EXIF data */
@@ -149,10 +174,10 @@
     animation: none;
   }
 
-  /* No revolve — pin the chip in view instead of leaving it parked off-screen */
+  /* No revolve — pin the strip at the start instead of animating it */
   .promo__track {
     animation: none;
-    left: var(--gutter);
     transform: none;
+    padding-left: var(--gutter);
   }
 }

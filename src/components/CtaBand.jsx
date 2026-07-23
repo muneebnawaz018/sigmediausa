@@ -1,5 +1,6 @@
 import { Phone, Clock, Mail } from 'lucide-react'
 import { CTA, MARKETS, CONTACT } from '../data/site.js'
+import { openAppModal } from './AppModal.jsx'
 import Reveal from './Reveal.jsx'
 import './cta-band.css'
 
@@ -12,7 +13,10 @@ export default function CtaBand() {
     <section id="contact" className="section cta-band" aria-labelledby="cta-band-title">
       <div className="container">
         <Reveal as="p" className="exif cta-band__eyebrow">
-          {CTA.eyebrow} <span className="exif__meta">· download the SIGMEDIAUSA app today!</span>
+          {CTA.eyebrow}{' '}
+          <button className="exif__meta cta-band__app-link" onClick={openAppModal}>
+            · download the SIGMEDIAUSA app today!
+          </button>
         </Reveal>
 
         <Reveal as="h2" id="cta-band-title" delay={80} className="cta-band__title">

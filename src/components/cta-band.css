@@ -56,6 +56,22 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Eyebrow app-download text acts as a button opening the store modal */
+.cta-band__app-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  transition: color var(--dur-fast, 150ms) ease;
+}
+
+.cta-band__app-link:hover {
+  color: var(--glow);
+}
+
 .cta-band__email {
   display: flex;
   justify-content: center;
